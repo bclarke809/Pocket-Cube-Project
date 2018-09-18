@@ -1,0 +1,888 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red255\green255\blue255;\red100\green56\blue32;
+\red196\green26\blue22;\red170\green13\blue145;\red0\green0\blue0;\red92\green38\blue153;\red28\green0\blue207;
+\red46\green13\blue110;\red63\green110\blue116;\red38\green71\blue75;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c45600\c0;\csgray\c100000;\csgenericrgb\c39100\c22000\c12500;
+\csgenericrgb\c77000\c10200\c8600;\csgenericrgb\c66500\c5200\c56900;\csgenericrgb\c0\c0\c0;\csgenericrgb\c35900\c14900\c60100;\csgenericrgb\c11000\c0\c81000;
+\csgenericrgb\c18100\c5200\c43100;\csgenericrgb\c24700\c43100\c45600;\csgenericrgb\c14900\c27800\c29400;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17000\viewh12660\viewkind0
+\deftab543
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \cb3 // Example program
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <iostream>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <string>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <iomanip>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <cstdio>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <ctime>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <fstream>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 using\cf7  \cf6 namespace\cf7  \cf8 std\cf7 ;
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf6 long\cf7  \cf6 long\cf7  Array[\cf9 4000000\cf7 ][\cf9 25\cf7 ] = \{\};          \cf2 //Array to hold all combinations
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 double\cf7  prev_count = \cf9 0\cf7 ;                      \cf2 //These are for
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 double\cf7  prev_time = \cf9 0\cf7 ;                       \cf2 //statistic purposes
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf6 long\cf7  x = \cf9 0\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 long\cf7  Lead = \cf9 1\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 long\cf7  interval = \cf9 0\cf7 ;
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Each Number 1 - 9 is assigned to a move, which is performed with a series of Array swaps
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 // Right Clockwise == 1
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  RC(\cf6 long\cf7  Lead)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 13\cf7 ], \cf11 Array\cf7 [Lead][\cf9 14\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 13\cf7 ], \cf11 Array\cf7 [Lead][\cf9 16\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 13\cf7 ], \cf11 Array\cf7 [Lead][\cf9 15\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 24\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 20\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 2\cf7 ], \cf11 Array\cf7 [Lead][\cf9 22\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 2\cf7 ], \cf11 Array\cf7 [Lead][\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 2\cf7 ], \cf11 Array\cf7 [Lead][\cf9 10\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Right Anticlockwise == 2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  RA(\cf6 long\cf7  Lead)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 13\cf7 ], \cf11 Array\cf7 [Lead][\cf9 15\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 13\cf7 ], \cf11 Array\cf7 [Lead][\cf9 16\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 13\cf7 ], \cf11 Array\cf7 [Lead][\cf9 14\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 20\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 24\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 2\cf7 ], \cf11 Array\cf7 [Lead][\cf9 10\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 2\cf7 ], \cf11 Array\cf7 [Lead][\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 2\cf7 ], \cf11 Array\cf7 [Lead][\cf9 22\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 // Double Right == 3
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  RR(\cf6 long\cf7  Lead)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 13\cf7 ], \cf11 Array\cf7 [Lead][\cf9 16\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 14\cf7 ], \cf11 Array\cf7 [Lead][\cf9 15\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 20\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 2\cf7 ], \cf11 Array\cf7 [Lead][\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 24\cf7 ], \cf11 Array\cf7 [Lead][\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 22\cf7 ], \cf11 Array\cf7 [Lead][\cf9 10\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Up Clockwise == 4
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  UC(\cf6 long\cf7  Lead)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 1\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 2\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 4\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 5\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 24\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 13\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 10\cf7 ], \cf11 Array\cf7 [Lead][\cf9 6\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 10\cf7 ], \cf11 Array\cf7 [Lead][\cf9 23\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 10\cf7 ], \cf11 Array\cf7 [Lead][\cf9 14\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Up Anticlockwise == 5
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  UA(\cf6 long\cf7  Lead)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 4\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 2\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 1\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 13\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 24\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 5\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 10\cf7 ], \cf11 Array\cf7 [Lead][\cf9 14\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 10\cf7 ], \cf11 Array\cf7 [Lead][\cf9 23\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 10\cf7 ], \cf11 Array\cf7 [Lead][\cf9 6\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Double Up == 6
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  UU(\cf6 long\cf7  Lead)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 2\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 1\cf7 ], \cf11 Array\cf7 [Lead][\cf9 4\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 10\cf7 ], \cf11 Array\cf7 [Lead][\cf9 23\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 24\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 6\cf7 ], \cf11 Array\cf7 [Lead][\cf9 14\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 5\cf7 ], \cf11 Array\cf7 [Lead][\cf9 13\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Front Clockwise == 7
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  FC(\cf6 long\cf7  Lead)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 10\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 11\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 13\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 8\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 15\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 17\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 6\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Front Anticlockwise == 8
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  FA(\cf6 long\cf7  Lead)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 11\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 10\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 8\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 13\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 6\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 17\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 15\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Double Front == 9
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  FF(\cf6 long\cf7  Lead)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 9\cf7 ], \cf11 Array\cf7 [Lead][\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 10\cf7 ], \cf11 Array\cf7 [Lead][\cf9 11\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 3\cf7 ], \cf11 Array\cf7 [Lead][\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 4\cf7 ], \cf11 Array\cf7 [Lead][\cf9 17\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 13\cf7 ], \cf11 Array\cf7 [Lead][\cf9 8\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [Lead][\cf9 15\cf7 ], \cf11 Array\cf7 [Lead][\cf9 6\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf6 int\cf7  main()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf2 //Start the time
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf8 clock_t\cf7  start;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 double\cf7  duration;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     start = \cf10 clock\cf7 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf2 //Open textfile for output
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf8 ofstream\cf7  textfile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     textfile.\cf10 open\cf7 (\cf5 "Pocket Cube Output.txt"\cf7 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf2 //Create first Lead, or solved state
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 int\cf7  a = \cf9 1\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 int\cf7  b = \cf9 4\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 int\cf7  c = \cf9 1\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf11 Array\cf7 [\cf9 0\cf7 ][\cf9 0\cf7 ] = \cf9 0\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 while\cf7 (a < \cf9 25\cf7 )\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 while\cf7 (a <= b)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf11 Array\cf7 [\cf9 0\cf7 ][a] = c;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             a++;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         b += \cf9 4\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         c++;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 long\cf7  \cf6 long\cf7  Lead = \cf9 1\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 long\cf7  \cf6 long\cf7  count = \cf9 0\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf2 //Here, we create each Lead using set of functions based on specific parameters
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 for\cf7 (\cf6 long\cf7  row = \cf9 0\cf7 ; row < \cf9 3674160\cf7 ; row++)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 for\cf7 (\cf6 int\cf7  i = \cf9 1\cf7 ; i < \cf9 10\cf7 ; i++)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf11 Array\cf7 [Lead][\cf9 0\cf7 ] = \cf11 Array\cf7 [row][\cf9 0\cf7 ]*\cf9 10\cf7  + i;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 long\cf7  index = \cf11 Array\cf7 [row][\cf9 0\cf7 ] % \cf9 10\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf2 //We don't want to test these because they will always be repetitions, hence a waste of time
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 while\cf7 ( ((index == \cf9 1\cf7  || index == \cf9 2\cf7  || index == \cf9 3\cf7 )&&(i == \cf9 1\cf7  || i == \cf9 2\cf7  || i == \cf9 3\cf7 )) ||
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                ((index == \cf9 4\cf7  || index == \cf9 5\cf7  || index == \cf9 6\cf7 )&&(i == \cf9 4\cf7  || i == \cf9 5\cf7  || i == \cf9 6\cf7 )) ||
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                ((index == \cf9 7\cf7  || index == \cf9 8\cf7  || index == \cf9 9\cf7 )&&(i == \cf9 7\cf7  || i == \cf9 8\cf7  || i == \cf9 9\cf7 )) )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 i++;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf11 Array\cf7 [Lead][\cf9 0\cf7 ] = \cf11 Array\cf7 [row][\cf9 0\cf7 ]*\cf9 10\cf7  + i;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf2 //Make new row equal to the branch
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 for\cf7 (\cf6 long\cf7  j = \cf9 1\cf7 ; j < \cf9 25\cf7 ; j++)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf11 Array\cf7 [Lead][j] = \cf11 Array\cf7 [row][j];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf2 //Change new row by one move from branch state
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 if\cf7 (i == \cf9 1\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf12 RC\cf7 (Lead);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 2\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf12 RA\cf7 (Lead);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 3\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf12 RR\cf7 (Lead);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 4\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf12 UC\cf7 (Lead);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 5\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf12 UA\cf7 (Lead);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 6\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf12 UU\cf7 (Lead);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 7\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf12 FC\cf7 (Lead);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 8\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf12 FA\cf7 (Lead);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 9\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf12 FF\cf7 (Lead);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf2 //Check if New row is same as any previous rows
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 for\cf7 (\cf6 long\cf7  k = \cf9 0\cf7 ; k < Lead; k++)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf6 int\cf7  check = \cf9 0\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf2 //Compare each part of the array with corresponding part of every previous array
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf6 for\cf7 (\cf6 int\cf7  z = \cf9 1\cf7 ; z < \cf9 25\cf7 ; z++)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     \cf2 //If Two parts are not equal, than whole row is not equal
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     \cf6 if\cf7 (\cf11 Array\cf7 [Lead][z] != \cf11 Array\cf7 [k][z])
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                         check++;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     \cf2 //Break from z loop if Lead and k are not equal
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     \cf6 if\cf7 (check > \cf9 0\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                         \cf6 break\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf2 //If they are equal, break from k loop and make Lead one less
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \cf6 if\cf7 (check == \cf9 0\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     Lead = Lead - \cf9 1\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     \cf6 break\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             Lead++;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf2 //Create variables for the percentage complete and the time taken in secs
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 float\cf7  percentage = (\cf6 float\cf7 (row)/\cf9 3674160\cf7 )*\cf9 100\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         duration = \cf10 clock\cf7 ()/ (\cf6 double\cf7 ) \cf4 CLOCKS_PER_SEC\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf2 //Send new row to textfile
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 for\cf7 (\cf6 long\cf7  j = \cf9 0\cf7 ; j < \cf9 25\cf7 ; j++)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf2 //cout<< Array[row][j] << " ";
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             textfile<< \cf11 Array\cf7 [row][j] << \cf5 " "\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf2 //Statistics, including number of rows complete, time taken, rate at which rows are created, ETA and percent complete
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 if\cf7 (duration > \cf11 interval\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf11 interval\cf7  += \cf9 5\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf6 double\cf7  rate = (count-\cf11 prev_count\cf7 )/(duration-\cf11 prev_time\cf7 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf8 cout\cf7  << count << \cf5 "  "\cf7  << duration << \cf5 "  secs   rate = "\cf7  << rate <<
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7                     \cf5 "  ETA = "\cf7  << (\cf9 3674160\cf7 -count)/rate << \cf5 " secs  "\cf7  << percentage << \cf5 " %"\cf7  << \cf10 endl\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf11 prev_count\cf7  = count;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf11 prev_time\cf7  = duration;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         textfile << \cf10 endl\cf7 ;
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf7         count++;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf8 cout\cf7  << count <<\cf10 endl\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     textfile.\cf10 close\cf7 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7  \cf9 0\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+}

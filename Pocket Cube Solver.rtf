@@ -1,0 +1,861 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red255\green255\blue255;\red100\green56\blue32;
+\red196\green26\blue22;\red170\green13\blue145;\red0\green0\blue0;\red92\green38\blue153;\red28\green0\blue207;
+\red46\green13\blue110;\red63\green110\blue116;\red38\green71\blue75;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c45600\c0;\csgray\c100000;\csgenericrgb\c39100\c22000\c12500;
+\csgenericrgb\c77000\c10200\c8600;\csgenericrgb\c66500\c5200\c56900;\csgenericrgb\c0\c0\c0;\csgenericrgb\c35900\c14900\c60100;\csgenericrgb\c11000\c0\c81000;
+\csgenericrgb\c18100\c5200\c43100;\csgenericrgb\c24700\c43100\c45600;\csgenericrgb\c14900\c27800\c29400;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab543
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \cb3 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //  main.cpp
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //  Created by Brett Clarke on 8/8/18.
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //  Copyright \'a9 2018 Brett Clarke. All rights reserved.
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4 #include \cf5 <iostream>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <fstream>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <string>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <cstdlib>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <istream>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 #include \cf5 <sstream>
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 using\cf7  \cf6 namespace\cf7  \cf8 std\cf7 ;
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf6 int\cf7  Array[\cf9 25\cf7 ];                  \cf2 //The input Cube arrangement
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf8 string\cf7  New = \cf5 " "\cf7 ;               \cf2 //This is a string version of Array for comparison with text file
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Each value 1 - 9 is assigned to a move on the cube
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 // Right Clockwise == 1
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  RC()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 13\cf7 ], \cf11 Array\cf7 [\cf9 14\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 13\cf7 ], \cf11 Array\cf7 [\cf9 16\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 13\cf7 ], \cf11 Array\cf7 [\cf9 15\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 24\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 20\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 2\cf7 ], \cf11 Array\cf7 [\cf9 22\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 2\cf7 ], \cf11 Array\cf7 [\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 2\cf7 ], \cf11 Array\cf7 [\cf9 10\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Right Anticlockwise == 2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  RA()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 13\cf7 ], \cf11 Array\cf7 [\cf9 15\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 13\cf7 ], \cf11 Array\cf7 [\cf9 16\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 13\cf7 ], \cf11 Array\cf7 [\cf9 14\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 20\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 24\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 2\cf7 ], \cf11 Array\cf7 [\cf9 10\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 2\cf7 ], \cf11 Array\cf7 [\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 2\cf7 ], \cf11 Array\cf7 [\cf9 22\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 // Double Right == 3
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  RR()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 13\cf7 ], \cf11 Array\cf7 [\cf9 16\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 14\cf7 ], \cf11 Array\cf7 [\cf9 15\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 20\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 2\cf7 ], \cf11 Array\cf7 [\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 24\cf7 ], \cf11 Array\cf7 [\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 22\cf7 ], \cf11 Array\cf7 [\cf9 10\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Up Clockwise == 4
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  UC()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 1\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 2\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 4\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 5\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 24\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 13\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 10\cf7 ], \cf11 Array\cf7 [\cf9 6\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 10\cf7 ], \cf11 Array\cf7 [\cf9 23\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 10\cf7 ], \cf11 Array\cf7 [\cf9 14\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Up Anticlockwise == 5
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  UA()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 4\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 2\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 1\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 13\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 24\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 5\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 10\cf7 ], \cf11 Array\cf7 [\cf9 14\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 10\cf7 ], \cf11 Array\cf7 [\cf9 23\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 10\cf7 ], \cf11 Array\cf7 [\cf9 6\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Double Up == 6
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  UU()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 2\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 1\cf7 ], \cf11 Array\cf7 [\cf9 4\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 10\cf7 ], \cf11 Array\cf7 [\cf9 23\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 24\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 6\cf7 ], \cf11 Array\cf7 [\cf9 14\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 5\cf7 ], \cf11 Array\cf7 [\cf9 13\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Front Clockwise == 7
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  FC()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 10\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 11\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 13\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 8\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 15\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 17\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 6\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Front Anticlockwise == 8
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  FA()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 11\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 10\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 8\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 13\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 6\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 17\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 15\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //Double Front == 9
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf6 void\cf7  FF()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 9\cf7 ], \cf11 Array\cf7 [\cf9 12\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 10\cf7 ], \cf11 Array\cf7 [\cf9 11\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 3\cf7 ], \cf11 Array\cf7 [\cf9 18\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 4\cf7 ], \cf11 Array\cf7 [\cf9 17\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 13\cf7 ], \cf11 Array\cf7 [\cf9 8\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf10 swap\cf7 (\cf11 Array\cf7 [\cf9 15\cf7 ], \cf11 Array\cf7 [\cf9 6\cf7 ]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+\
+
+\f0\fs22 \cf6 int\cf7  main()\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf2 //Create first , or solved state
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 int\cf7  a = \cf9 1\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 int\cf7  b = \cf9 4\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 int\cf7  c = \cf9 1\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf11 Array\cf7 [\cf9 0\cf7 ] = \cf9 0\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 while\cf7 (a < \cf9 25\cf7 )\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 while\cf7 (a <= b)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf11 Array\cf7 [a] = c;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             a++;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         b += \cf9 4\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         c++;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf2 // Create set of moves to mix up the cube
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 int\cf7  i = -\cf9 1\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf8 cout\cf7  << \cf5 "Enter the Moves of Cube as space seperated single digit integers, corresponding to their respective moves. End the string with a zero (0) before pressing 'Enter' \\n"\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 while\cf7  (i != \cf9 0\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf8 cin\cf7  >> i;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 if\cf7 (i == \cf9 1\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf12 RC\cf7 (); \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 2\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf12 RA\cf7 (); \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 3\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf12 RR\cf7 (); \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 4\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf12 UC\cf7 (); \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 5\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf12 UA\cf7 (); \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 6\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf12 UU\cf7 (); \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 7\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf12 FC\cf7 (); \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 8\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf12 FA\cf7 (); \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 9\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf12 FF\cf7 (); \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf2 //Use new Cube arrangement to make string for comparison with text file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 for\cf7 (\cf6 int\cf7  i = \cf9 1\cf7 ; i < \cf9 25\cf7 ; i++)\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf11 New\cf7  = \cf11 New\cf7  + \cf10 to_string\cf7 (\cf11 Array\cf7 [i]) + \cf5 " "\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf2 //Open the text file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf8 string\cf7  line;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf8 string\cf7  Lead;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf8 ifstream\cf7  my_file;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     my_file.\cf10 open\cf7 (\cf5 \'93Pocket Cube Output.txt"\cf7 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 if\cf7 (my_file.\cf10 is_open\cf7 ())
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 while\cf7 (\cf11 New\cf7  != line)      \cf2 //Compare each line with your Cube arrangement until they are equal
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             my_file >> line;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             Lead = line;            \cf2 //This is the Lead number which indicates the moves to solve
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7             \cf10 getline\cf7 (my_file, line);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         my_file.\cf10 close\cf7 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 else
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf8 cout\cf7  << \cf5 "Unable to open file to read \\n"\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf7     \cf2 //Transfer the value of Lead to Moves as an integer
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf8 stringstream\cf7  Leading_Num(Lead);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 long\cf7  \cf6 long\cf7  Moves = \cf9 0\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     Leading_Num >> Moves;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 long\cf7  \cf6 long\cf7  Num = \cf9 0\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf2 //Reverse the integers of Move using mod and output the move corresponding to each digit
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 while\cf7 (Moves != \cf9 0\cf7 )\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 long\cf7  \cf6 long\cf7  i = Moves%\cf9 10\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 if\cf7 (i == \cf9 1\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf8 cout\cf7  << \cf5 "RA "\cf7 ; \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 2\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf8 cout\cf7  << \cf5 "RC "\cf7 ; \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 3\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf8 cout\cf7  << \cf5 "RR "\cf7 ; \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 4\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf8 cout\cf7  << \cf5 "UA "\cf7 ; \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 5\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf8 cout\cf7  << \cf5 "UC "\cf7 ; \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 6\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf8 cout\cf7  << \cf5 "UU "\cf7 ; \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 7\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf8 cout\cf7  << \cf5 "FA "\cf7 ; \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 8\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf8 cout\cf7  << \cf5 "FC "\cf7 ; \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf6 else\cf7  \cf6 if\cf7 (i == \cf9 9\cf7 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \{ \cf8 cout\cf7  << \cf5 "FF "\cf7 ; \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         Moves /= \cf9 10\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         Num++;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf2 //Once all moves have been calculated, write how many moves are needed
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 if\cf7 (Moves == \cf9 0\cf7 )\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7         \cf8 cout\cf7  << \cf9 '\\n'\cf7  << \cf5 "The Cube will be solved in "\cf7  << Num << \cf5 " moves "\cf7  << \cf9 '\\n'\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7     \cf6 return\cf7  \cf9 0\cf7 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf7 \}
+\f1\fs24 \cf0 \
+\
+\
+
+\f0\fs22 \cf2 // If you have trouble attaching the file with the array, run just this part of the code, to create a text file that will automatically link to the code, then replace the values with the array values from the original file, and take out tthe code. Make sure the name of the file is the same when opening it from the above code.
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 /*
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  int count = 0;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  ofstream myfile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  myfile.open("File_Test.txt");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  if(myfile.is_open())\{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  for(int i = 0; i < 5; i++)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  for(int j = 0; j < 5; j++)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  myfile << count << " ";
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  count++;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  myfile << '\\n';
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  myfile.close();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  else
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  cout << "Unable to open file \\n";
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  */
+\f1\fs24 \cf0 \
+\
+}
